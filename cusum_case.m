@@ -10,10 +10,12 @@ pfile = [case_name '.mat'];
 pfname = fullfile(ResampleDir, pfile);
 load(pfname);
 
-[alarms_acc, nc_acc] = CUSUM( acc_sd(:,2), 1, 5, 10, 1 );
-[alarms_gsr, nc_gsr] = CUSUM( gsr_sd(:,2), 2, 5, 40, 10 );
-[alarms_hr, nc_hr] = CUSUM(hr_sd(:,2), 2, 5, 20, 1 );
-[alarms_light, nc_light] = CUSUM( light_sd(:,2), 2, 5, 20, 2 );
+
+
+[alarms_acc, nc_acc] = CUSUM( log(acc_sd(:,2)), 0.1, 1, 5, 0.1 );
+[alarms_gsr, nc_gsr] = CUSUM( log(gsr_sd(:,2)), 0.1, 1, 5, 0.1);
+[alarms_hr, nc_hr] = CUSUM(log(hr_sd(:,2)),0.05, 1, 5, 0.05 );
+[alarms_light, nc_light] = CUSUM( log(light_sd(:,2)),0.1, 5, 5, 0.1 );
 
 figure
 subplot(4,1,1)
