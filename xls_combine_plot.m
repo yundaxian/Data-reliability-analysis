@@ -6,7 +6,6 @@
 
 
 function [] = xls_combine_plot(data_dir,sample_base)
-TIMESWITCH = 86400;
 %# get all XLS files in source directory
 dirName = data_dir;
 files = dir( fullfile(dirName,'*.xlsx') );
@@ -18,10 +17,7 @@ for i=1:numel(files)
     fname = fullfile(dirName, files{i});    %# absolute-path filename
     [~,f] = fileparts(fname);               %# used to name sheets in output
 
-    [sheetdata] = xlsread(fname);
-    time_base = sheetdata(1,1)*TIMESWITCH;
-    sheetdata(:,1) = sheetdata(:,1)*TIMESWITCH - time_base;  
-    
+    [sheetdata] = xlsread(fname);    
     switch f
     case 'acc'
         acc_sd = sheetdata;
@@ -62,9 +58,9 @@ acc_sd = resample(acc_sd, target_num, r_acc);
 acc_sd = clean_data(acc_sd);
 
 gsr_sd = resample(gsr_sd, target_num, r_gsr);
-disp(gsr_sd);
+%disp(gsr_sd);
 gsr_sd = clean_data(gsr_sd);
-disp(gsr_sd);
+%disp(gsr_sd);
 
 hr_sd = resample(hr_sd, target_num, r_hr);
 hr_sd = clean_data(hr_sd);
