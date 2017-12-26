@@ -2,7 +2,7 @@
 % Created by:   Leichen Dai
 % Date:         July 5th,2017
 % Notes:        This file read excel file in data-dir folder. And plot wave
-% form for every sensor data
+%               form for every sensor data
 
 
 function [] = xls_combine_plot(data_dir,sample_base)
